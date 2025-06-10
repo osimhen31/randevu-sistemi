@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Randevu Listesi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f0f2f5;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .button {
+      text-decoration: none;
+      background-color: #4CAF50;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 6px;
+      width: 200px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 6px 10px;
+      border: none;
+      background-color: #2196F3;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0b7dda;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .actions a {
+      margin-right: 8px;
+      text-decoration: none;
+      color: #007BFF;
+    }
+
+    .actions a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<h1>Tüm Randevular</h1>
+
+<a href="/randevular/form" class="button">🆕 Yeni Randevu Ekle</a>
+
+<!-- 🔍 Arama Formu -->
+<form th:action="@{/randevular/liste}" method="get">
+  <input type="text" name="keyword" th:value="${keyword}" placeholder="Ad Soyad Ara" />
+  <button type="submit">🔍 Ara</button>
+  <a th:href="@{/randevular/liste}" class="button" style="background-color: #ccc; color: black;">Tümünü Göster</a>
+</form>
+
+<table>
+  <tr>
+    <th>Ad Soyad</th>
+    <th>Tarih</th>
+    <th>Saat</th>
+    <th>Açıklama</th>
+    <th>İşlem</th>
+  </tr>
+  <tr th:each="randevu : ${randevular}">
+    <td th:text="${randevu.adSoyad}"></td>
+    <td th:text="${randevu.tarih}"></td>
+    <td th:text="${randevu.saat}"></td>
+    <td th:text="${randevu.aciklama}"></td>
+    <td class="actions">
+      <a th:href="@{'/randevular/duzenle/' + ${randevu.id}}">✏️ Düzenle</a>
+      <a th:href="@{'/randevular/sil/' + ${randevu.id}}" onclick="return confirm('Silmek istediğine emin misin?')">❌ Sil</a>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Randevu Düzenle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a.back-link {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #555;
+        }
+
+        a.back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1>Randevu Düzenle</h1>
+
+<form th:action="@{/randevular/guncelle}" th:object="${randevu}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
+    <label>Ad Soyad:</label>
+    <input type="text" th:field="*{adSoyad}" /><br>
+
+    <label>Tarih:</label>
+    <input type="text" th:field="*{tarih}" /><br>
+
+    <label>Saat:</label>
+    <input type="text" th:field="*{saat}" /><br>
+
+    <label>Açıklama:</label>
+    <input type="text" th:field="*{aciklama}" /><br>
+
+    <button type="submit">Güncelle</button>
+</form>
+
+<a href="/randevular/liste" class="back-link">← Geri Dön</a>
+</body>
+</html>
