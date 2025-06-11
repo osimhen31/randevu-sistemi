@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY . /app
 
-RUN ./mvnw clean install
+RUN ./mvnw clean install -DskipTests
 
 EXPOSE 10000
 
-ENTRYPOINT ["java", "-jar", "target/randevu-sistemi-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/*.jar"]
