@@ -8,4 +8,5 @@ services:
     envVars:
       - key: JAVA_VERSION
         value: 17
-    autoDeploy: true
+      - key: JAVA_HOME
+        value: /opt/render/project/.jdk
