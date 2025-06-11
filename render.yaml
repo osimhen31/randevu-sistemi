@@ -8,5 +8,3 @@ services:
     envVars:
       - key: JAVA_VERSION
         value: 17
-      - key: JAVA_HOME
-        value: /opt/render/project/.sdkman/candidates/java/current
